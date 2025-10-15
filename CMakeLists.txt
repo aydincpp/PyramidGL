@@ -25,4 +25,11 @@ add_executable(${CMAKE_PROJECT_NAME} ${SOURCES})
 
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${INCLUDE_DIR})
 
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE glfw glad GLX)
+if(WIN32)
+    target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE glfw glad opengl32)
+elseif(APPLE)
+    find_library(OpenGL_LIBRARY OpenGL)
+    target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE glfw glad ${OpenGL_LIBRARY})
+else() # Linux
+    target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE glfw glad GL)
+endif()
