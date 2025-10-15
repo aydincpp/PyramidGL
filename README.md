@@ -16,6 +16,7 @@ and maybe years from now, I’ll look back at this and see how far I’ve come. 
 - OpenGL 4.1 or higher
 - C++ compiler
 - CMake
+- On Windows, ensure MinGW's g++ is installed and in your PATH.
 
 ## Build
 
@@ -28,7 +29,7 @@ cmake --build build
 
 ### Windows (Command Prompt / PowerShell)
 ```bash
-cmake -S . -B build
+cmake -S . -B build -G "MinGW Makefiles"
 cmake --build build
-build\PyramidGL.exe
+.\build\PyramidGL.exe
 ```
